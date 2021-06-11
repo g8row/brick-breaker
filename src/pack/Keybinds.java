@@ -16,7 +16,7 @@ public class Keybinds implements KeyListener {
         switch (e.getKeyCode()){
 
             case KeyEvent.VK_RIGHT:
-                if((Paddle.x+Paddle.WIDTH)<GUI.WIDTH){
+                if((Paddle.x+Paddle.WIDTH/2)<GUI.WIDTH){
                     Paddle.x+=5;
                     //System.out.println(Paddle.x);
                 }

@@ -6,12 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Draw extends JLabel {
-
-
-    public Draw(){
-
-    }
-
+	
     @Override
     public void paint(Graphics g) {
         g.setColor(Color.MAGENTA);
