@@ -3,7 +3,7 @@ package objects;
 import pack.GUI;
 
 public class Grid {
-    public static Brick[][] brickgrid = new Brick[30][30];
+    public static Brick[][] brickgrid = new Brick[10][20];
 
     public Grid() {
         for (int i = 0; i < brickgrid.length; i++) {
