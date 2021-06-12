@@ -1,5 +1,7 @@
 package pack;
 
+import objects.Ball;
+
 import objects.Paddle;
 import objects.Brick;
 import objects.Grid;
@@ -24,6 +26,9 @@ public class Draw extends JLabel {
         }
         g.setColor(Color.MAGENTA);
         g.fillRect(Paddle.x, Paddle.y, Paddle.WIDTH, Paddle.HEIGHT);
+
+        g.setColor(new Color(0, 152, 0));
+        g.fillOval(Ball.x, Ball.y, 10, 10);
 
         repaint();
     }
