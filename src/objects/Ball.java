@@ -15,8 +15,8 @@ public class Ball {
     public static int y = 300;
     public static int HEIGHT = 4;
     public static int WIDTH = 4;
-    public static int speedX = 8;
-    public static int speedY = 8;
+    public static int speedX = 1;
+    public static int speedY = 1;
 
     public static void move() {
 
@@ -35,6 +35,8 @@ public class Ball {
                 toRemove.add(current);
                 Grid.brickgrid[(current.x - GUI.WIDTH_OFFSET) / Brick.WIDTH][(current.y - GUI.HEIGHT_OFFSET) / Brick.HEIGHT].active = 0;
                 try {
+                    // samo tuk sum rabotil, tiq ifove sa za da sloji v borderblocks susednite no mai ne raboti mn
+                    // osven tva po nqkva prichina ot vreme na vreme hitva nqkvi active=0 blockove i she se samoubiq
                     if (Grid.brickgrid[(current.x - GUI.WIDTH_OFFSET) / Brick.WIDTH - 1][(current.y - GUI.HEIGHT_OFFSET) / Brick.HEIGHT].active != 0) {
                         toAdd.add(Grid.brickgrid[(current.x - GUI.WIDTH_OFFSET) / Brick.WIDTH - 1][(current.y - GUI.HEIGHT_OFFSET) / Brick.HEIGHT]);
                         System.out.println("check1 " + Grid.brickgrid[(current.x - GUI.WIDTH_OFFSET) / Brick.WIDTH - 1][(current.y - GUI.HEIGHT_OFFSET) / Brick.HEIGHT]);

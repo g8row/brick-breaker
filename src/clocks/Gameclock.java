@@ -10,7 +10,7 @@ public class Gameclock extends Thread {
         while (running) {
             try {
 
-                sleep(100);
+                sleep(10);
                 Ball.move();
             } catch (InterruptedException e) {
                 e.printStackTrace();
