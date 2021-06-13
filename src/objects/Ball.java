@@ -31,7 +31,7 @@ public class Ball {
             }
         });
         for (Brick current : Grid.borderblocks) {
-            if (Ball.toRect().intersects(current.toRect())) {
+            if (Ball.toRect().intersects(current.toRect()) && current.active!=0) {
                 toRemove.add(current);
                 Grid.brickgrid[(current.x - GUI.WIDTH_OFFSET) / Brick.WIDTH][(current.y - GUI.HEIGHT_OFFSET) / Brick.HEIGHT].active = 0;
                 try {
