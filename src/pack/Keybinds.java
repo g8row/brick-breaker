@@ -17,13 +17,13 @@ public class Keybinds implements KeyListener {
 
             case KeyEvent.VK_RIGHT:
                 if((Paddle.x+Paddle.WIDTH/2)<GUI.WIDTH){
-                    Paddle.x+=5;
+                    Paddle.x+=12;
                     //System.out.println(Paddle.x);
                 }
                 break;
             case KeyEvent.VK_LEFT:
                 if((Paddle.x-Paddle.WIDTH/2)>0){
-                    Paddle.x-=5;
+                    Paddle.x-=12;
                 }
                 break;
         }

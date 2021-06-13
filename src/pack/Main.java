@@ -11,7 +11,7 @@ public class Main {
         Gameclock gc = new Gameclock();
 
         gui.create();
-        gc.run();
+        gc.start();
 
     }
 }
