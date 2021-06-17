@@ -19,7 +19,6 @@ public class GUI extends JFrame {
                 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 setLocationRelativeTo(null);
                 setResizable(false);
-                addKeyListener(new Keybinds());
 
                 score = new JLabel();
                 score.setBounds(WIDTH - WIDTH_OFFSET, HEIGHT_OFFSET + 10, 50, 20);
@@ -31,6 +30,7 @@ public class GUI extends JFrame {
                 draw.setBounds(WIDTH, HEIGHT_OFFSET, WIDTH, HEIGHT);
                 draw.setVisible(true);
                 add(draw);
+                addKeyListener(new Keybinds());
 
                 revalidate();
                 requestFocus();

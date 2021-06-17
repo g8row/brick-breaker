@@ -37,10 +37,10 @@ public class Draw extends JLabel {
                         g.fillRect(0, 0, GUI.WIDTH, GUI.HEIGHT);
                         g2d.setColor(new Color(255, 254, 254));
                         g.setColor(new Color(255, 254, 254));
-                        // texta ne bachka
                         Font font = new Font("comicsans", Font.PLAIN, 30);
-                        g2d.setFont(font);
-                        g.drawString("You lost", 0, 0);
+                        g.setFont(font);
+                        g.setColor(new Color(17, 255, 12));
+                        g.drawString("You lost", 220, 260);
 
                 }
                 repaint();

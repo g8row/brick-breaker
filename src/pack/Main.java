@@ -1,7 +1,7 @@
 package pack;
 
-import objects.Grid;
 import clocks.Gameclock;
+import objects.Grid;
 
 public class Main {
 

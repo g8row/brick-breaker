@@ -122,11 +122,18 @@ public class Ball {
 
                 } else if (Ball.y > GUI.HEIGHT - GUI.HEIGHT_OFFSET) {
                         Draw.inGame = false;
-                        Gameclock.running = false;
                 }
 
                 y += speedY;
                 x += speedX;
+        }
+
+        public static void reload() {
+                x = 300;
+                y = 300;
+                speedX = 1;
+                speedY = 1;
+
         }
 
         public static Rectangle toRect() {
