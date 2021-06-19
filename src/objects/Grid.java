@@ -2,7 +2,6 @@ package objects;
 
 import pack.GUI;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Grid {
@@ -32,6 +31,7 @@ public class Grid {
         }
 
         public static void reload() {
+                borderblocks.clear();
 
                 for (int i = 0; i < brickgrid.length; i++) {
                         for (int j = 0; j < brickgrid[i].length; j++) {

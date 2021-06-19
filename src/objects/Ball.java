@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 import clocks.Gameclock;
 
 public class Ball {
-        public static int x = 300;
+        public static int x = 270;
         public static int y = 300;
         public static int HEIGHT = 4;
         public static int WIDTH = 4;
@@ -33,76 +33,39 @@ public class Ball {
                 });
                 for (Brick current : Grid.borderblocks) {
                         if (Ball.toRect().intersects(current.toRect()) && current.active != 0) {
+                                // relative grid coordinates for convenience
+                                int currentX = (current.x - GUI.WIDTH_OFFSET) / Brick.WIDTH;
+                                int currentY = (current.y - GUI.HEIGHT_OFFSET) / Brick.HEIGHT;
+
                                 toRemove.add(current);
-                                Grid.brickgrid[(current.x - GUI.WIDTH_OFFSET)
-                                                / Brick.WIDTH][(current.y - GUI.HEIGHT_OFFSET)
-                                                                / Brick.HEIGHT].active = 0;
+                                Grid.brickgrid[currentX][currentY].active = 0;
                                 try {
-                                        // samo tuk sum rabotil, tiq ifove sa za da sloji v borderblocks susednite no
-                                        // mai ne raboti mn
-                                        // osven tva po nqkva prichina ot vreme na vreme hitva nqkvi active=0 blockove i
-                                        // she se samoubiq
-                                        if (Grid.brickgrid[(current.x - GUI.WIDTH_OFFSET) / Brick.WIDTH
-                                                        - 1][(current.y - GUI.HEIGHT_OFFSET)
-                                                                        / Brick.HEIGHT].active != 0) {
-                                                toAdd.add(Grid.brickgrid[(current.x - GUI.WIDTH_OFFSET) / Brick.WIDTH
-                                                                - 1][(current.y - GUI.HEIGHT_OFFSET) / Brick.HEIGHT]);
-                                                System.out.println("check1 "
-                                                                + Grid.brickgrid[(current.x - GUI.WIDTH_OFFSET)
-                                                                                / Brick.WIDTH
-                                                                                - 1][(current.y - GUI.HEIGHT_OFFSET)
-                                                                                                / Brick.HEIGHT]);
+
+                                        if (x + 3 <= current.x || x + 1 > current.x + Brick.WIDTH) {
+                                                speedX *= -1;
                                         } else {
-                                                toRemove.add(Grid.brickgrid[(current.x - GUI.WIDTH_OFFSET) / Brick.WIDTH
-                                                                - 1][(current.y - GUI.HEIGHT_OFFSET) / Brick.HEIGHT]);
-                                                System.out.println("check2");
+
+                                                speedY *= -1;
                                         }
-                                        if (Grid.brickgrid[(current.x - GUI.WIDTH_OFFSET) / Brick.WIDTH
-                                                        + 1][(current.y - GUI.HEIGHT_OFFSET)
-                                                                        / Brick.HEIGHT].active != 0) {
-                                                toAdd.add(Grid.brickgrid[(current.x - GUI.WIDTH_OFFSET) / Brick.WIDTH
-                                                                + 1][(current.y - GUI.HEIGHT_OFFSET) / Brick.HEIGHT]);
-                                                System.out.println("check3");
-                                        } else {
-                                                toRemove.add(Grid.brickgrid[(current.x - GUI.WIDTH_OFFSET) / Brick.WIDTH
-                                                                + 1][(current.y - GUI.HEIGHT_OFFSET) / Brick.HEIGHT]);
-                                                System.out.println("check4");
-                                        }
-                                        if (Grid.brickgrid[(current.x - GUI.WIDTH_OFFSET)
-                                                        / Brick.WIDTH][(current.y - GUI.HEIGHT_OFFSET) / Brick.HEIGHT
-                                                                        - 1].active != 0) {
-                                                toAdd.add(Grid.brickgrid[(current.x - GUI.WIDTH_OFFSET)
-                                                                / Brick.WIDTH][(current.y - GUI.HEIGHT_OFFSET)
-                                                                                / Brick.HEIGHT - 1]);
-                                                System.out.println("check5");
-                                        } else {
-                                                toRemove.add(Grid.brickgrid[(current.x - GUI.WIDTH_OFFSET)
-                                                                / Brick.WIDTH][(current.y - GUI.HEIGHT_OFFSET)
-                                                                                / Brick.HEIGHT - 1]);
-                                                System.out.println("check6");
-                                        }
-                                        if (Grid.brickgrid[(current.x - GUI.WIDTH_OFFSET)
-                                                        / Brick.WIDTH][(current.y - GUI.HEIGHT_OFFSET) / Brick.HEIGHT
-                                                                        + 1].active != 0) {
-                                                toAdd.add(Grid.brickgrid[(current.x - GUI.WIDTH_OFFSET)
-                                                                / Brick.WIDTH][(current.y - GUI.HEIGHT_OFFSET)
-                                                                                / Brick.HEIGHT + 1]);
-                                                System.out.println("check7");
-                                        } else {
-                                                toRemove.add(Grid.brickgrid[(current.x - GUI.WIDTH_OFFSET)
-                                                                / Brick.WIDTH][(current.y - GUI.HEIGHT_OFFSET)
-                                                                                / Brick.HEIGHT + 1]);
-                                                System.out.println("check8");
-                                        }
+
                                 } catch (Exception exception) {
                                         exception.printStackTrace();
                                 }
-                                if (x + WIDTH <= current.x || x > current.x + Brick.WIDTH) {
-                                        speedX *= -1;
-                                } else {
-                                        speedY *= -1;
-                                }
+                                // adding the neighboring blocks to borderblocks
+                                try {
+                                        if (currentX != 0) {
+                                                toAdd.add(Grid.brickgrid[currentX - 1][currentY]);
+                                        }
+                                        toAdd.add(Grid.brickgrid[currentX + 1][currentY]);
+                                        toAdd.add(Grid.brickgrid[currentX][currentY + 1]);
+                                        if (currentY != 0) {
 
+                                                toAdd.add(Grid.brickgrid[currentX][currentY - 1]);
+                                        }
+
+                                } catch (Exception e) {
+                                        System.out.println("swag");
+                                }
                                 score += 10;
                                 GUI.score.setText(Integer.toString(score));
                                 System.out.println(score);
@@ -134,6 +97,7 @@ public class Ball {
                 speedX = 1;
                 speedY = 1;
 
+                score = 0;
         }
 
         public static Rectangle toRect() {

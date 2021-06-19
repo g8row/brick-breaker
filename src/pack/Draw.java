@@ -7,6 +7,7 @@ import objects.Brick;
 import objects.Grid;
 import javax.swing.*;
 import java.awt.*;
+import java.util.Iterator;
 
 public class Draw extends JLabel {
         public static boolean inGame = true;
@@ -22,10 +23,17 @@ public class Draw extends JLabel {
                                 for (int j = 0; j < Grid.brickgrid[0].length; j++) {
                                         if (Grid.brickgrid[i][j].active == 1) {
                                                 g2d.fillRect(Grid.brickgrid[i][j].x, Grid.brickgrid[i][j].y,
-                                                                Brick.WIDTH - 1, Brick.HEIGHT - 1);
+                                                                Brick.WIDTH, Brick.HEIGHT);
                                         }
                                 }
                         }
+                        // draw borderblocks (Testing)
+                        g.setColor(new Color(0, 255, 0));
+                        for (Brick current : Grid.borderblocks) {
+                                g2d.fillRect(current.x, current.y, Brick.WIDTH, Brick.HEIGHT);
+
+                        }
+
                         g2d.setColor(Color.MAGENTA);
                         g2d.fillRect(Paddle.x, Paddle.y, Paddle.WIDTH, Paddle.HEIGHT);
 
