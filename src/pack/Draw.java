@@ -16,23 +16,31 @@ public class Draw extends JLabel {
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D) g;
                 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+                Color colorUI = UIManager.getColor("Panel.background");
                 if (inGame) {
-                        g2d.setColor(new Color(0, 0, 0));
                         // draw bricks
                         for (int i = 0; i < Grid.brickgrid.length; i++) {
                                 for (int j = 0; j < Grid.brickgrid[0].length; j++) {
                                         if (Grid.brickgrid[i][j].active == 1) {
+                                                g2d.setColor(new Color(0, 0, 0));
+
                                                 g2d.fillRect(Grid.brickgrid[i][j].x, Grid.brickgrid[i][j].y,
+                                                                Brick.WIDTH, Brick.HEIGHT);
+
+                                                g2d.setStroke(new BasicStroke(3));
+                                                g2d.setColor(colorUI);
+                                                g2d.drawRect(Grid.brickgrid[i][j].x, Grid.brickgrid[i][j].y,
                                                                 Brick.WIDTH, Brick.HEIGHT);
                                         }
                                 }
                         }
-                        // draw borderblocks (Testing)
-                        g.setColor(new Color(0, 255, 0));
-                        for (Brick current : Grid.borderblocks) {
-                                g2d.fillRect(current.x, current.y, Brick.WIDTH, Brick.HEIGHT);
+                        /*
+                         * // draw borderblocks (Testing) g.setColor(new Color(0, 255, 0)); for (Brick
+                         * current : Grid.borderblocks) { g2d.fillRect(current.x, current.y,
+                         * Brick.WIDTH, Brick.HEIGHT); }
+                         */
 
-                        }
+                        // draw space between blocks
 
                         g2d.setColor(Color.MAGENTA);
                         g2d.fillRect(Paddle.x, Paddle.y, Paddle.WIDTH, Paddle.HEIGHT);

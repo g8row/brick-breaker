@@ -2,15 +2,12 @@ package objects;
 
 import pack.Draw;
 import pack.GUI;
-import pack.Main;
 import java.awt.*;
 import java.util.HashSet;
 import java.util.function.Predicate;
 
-import clocks.Gameclock;
-
 public class Ball {
-        public static int x = 270;
+        public static int x = 260;
         public static int y = 300;
         public static int HEIGHT = 4;
         public static int WIDTH = 4;
@@ -92,12 +89,13 @@ public class Ball {
         }
 
         public static void reload() {
-                x = 300;
+                x = 260;
                 y = 300;
                 speedX = 1;
                 speedY = 1;
 
                 score = 0;
+                GUI.score.setText(Integer.toString(score));
         }
 
         public static Rectangle toRect() {
